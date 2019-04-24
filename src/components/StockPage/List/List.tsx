@@ -5,7 +5,7 @@ const List = ( props: IStocksState ) => {
 	return (
 		<div>
 			{
-				props.stocks.map((stock: IStock): any => (
+				props.stocks && props.stocks.map((stock: IStock): any => (
 					<div key={stock.id}>
 						<div>{stock.name}</div>
 						<div>{stock.count} shares</div>

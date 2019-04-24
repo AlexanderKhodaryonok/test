@@ -22,7 +22,7 @@ const Chart = () => {
         <div>
           <HighchartsReact
             highcharts={Highcharts}
-            options={options}
+            options={options as any}
           />
         </div>
       </div>

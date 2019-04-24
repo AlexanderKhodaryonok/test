@@ -9,6 +9,6 @@ export interface IStock {
 }
 
 export interface IStocksState {
-	currentStockId: string
-	stocks: IStock[]
+	currentStockId?: string
+	stocks?: IStock[]
 }

@@ -1,30 +1,57 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { compose } from "redux";
+import { createStructuredSelector } from 'reselect';
 import List from '../StockPage/List/List'
 import Chart from '../StockPage/ChartComponent/ChartComponent'
 import { stocksSelector } from '../../Redux/selectors/stocksPageSelectors';
-import { IStock, IStocksState } from '../../Redux/Reducers/StockPage/interfaces'
 
-interface IStateProps {
-	stocks: IStock[]
+interface IStock {
+	id: string
+	name: string
+	count: number
+	price: number
+	growth: string
+	isAdded: boolean
+	data: number[]
 }
 
-class ListContainer extends React.Component {
+interface IStateProps {
+    stocks?: IStock[];
+    currentStockId?: string;
+}
+
+interface IDispatchProps{
+    func?: any;
+}
+
+interface IOwnProps {
+    ownProps: any;
+}
+
+interface IProps extends IStateProps, IDispatchProps, IOwnProps {}
+
+class ListContainer extends React.Component <IProps> {
+    constructor(props: IProps){
+        super(props)
+    }
     render() {
         return (
             <>
                 <List {...this.props} />
-                <Chart {...this.props} />
+                <Chart />
             </>
         );
     }
 }
 
-const mapStateToProps = (state: IStocksState):IStateProps => {
+const mapStateToProps = createStructuredSelector({
+    stocks: stocksSelector,
+});
+
+const mapDispatchToProps = (dispatch: any): IDispatchProps => {
     return {
-        stocks: stocksSelector(state)
+
     }
 }
 
-export default connect<IStocksState>(mapStateToProps, null)(ListContainer);
+export default connect<IStateProps, IDispatchProps>(mapStateToProps, mapDispatchToProps)(ListContainer);
