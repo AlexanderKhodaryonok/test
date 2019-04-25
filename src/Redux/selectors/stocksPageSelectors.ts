@@ -5,7 +5,6 @@ const stocksPageSelector = (state: any): any => state.stocksPage;
 export const filterSelector = createSelector(stocksPageSelector, (stockPage) => stockPage.filter || '');
 
 export const stocksSelector = createSelector(stocksPageSelector, (stocksPage) => {
-	debugger
 
 	switch (stocksPage.isShowMyStocks) {
 
@@ -19,10 +18,7 @@ export const stocksSelector = createSelector(stocksPageSelector, (stocksPage) =>
 		case false:
 			let allStocks = stocksPage.stocks || [];
 			if (stocksPage.filter) {
-				let filteredAllStocks = allStocks.filter((stock: any) => {
-					return stock.name.toLowerCase().includes(stocksPage.filter.toLowerCase())
-				}
-				)
+				let filteredAllStocks = allStocks.filter((stock: any) => stock.name.toLowerCase().includes(stocksPage.filter.toLowerCase()))
 				return filteredAllStocks || [];
 			} else return allStocks;
 	}

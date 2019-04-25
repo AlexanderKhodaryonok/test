@@ -1,0 +1,33 @@
+.wrapper {
+	display: grid;
+	grid-template-rows: 50px 400px;
+	grid-template-columns: 10% 20% 70%;
+	grid-template-areas: 
+	'logo search chart'
+	'sidebar list chart'
+	'. . button'
+}
+
+.logo {
+	grid-area: logo;
+}
+
+.sidebar {
+	grid-area: sidebar;
+}
+
+.search {
+	grid-area: search;
+}
+
+.list {
+	grid-area: list;
+}
+
+.chart {
+	grid-area: chart;
+}
+
+.button{
+	grid-area: button;
+}

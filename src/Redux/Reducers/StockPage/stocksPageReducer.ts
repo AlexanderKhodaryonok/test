@@ -1,16 +1,16 @@
 import { IStock, IStocksState } from './interfaces'
 import { handleActions } from 'redux-actions';
-import { setStockId, setShowMode } from '../../actionCreators/stockPageActionCreators';
+import { setStockId, setShowMode, setFilter } from '../../actionCreators/stockPageActionCreators';
 
 
 export const initialState = {
-	filter: 'TWTR',
+	filter: '',
 	isShowMyStocks: true,
 	currentStockId: '',
 	stocks: [
 		{
 			id: '1',
-			name: 'APPLT',
+			name: 'APPL',
 			count: 150,
 			price: 105.67,
 			growth: '9.23%',
@@ -67,15 +67,19 @@ export const initialState = {
 
 const stocksReducer = handleActions({
 
-	[setStockId.toString()]: (state: IStocksState, {payload: id}: any) => {
+	[setStockId.toString()]: (state: IStocksState, { payload: id }: any) => {
          return { ...state, currentStockId: id }
 	 },
 
-	 [setShowMode.toString()]: (state: IStocksState, {payload: bool}: any) => {
+	 [setShowMode.toString()]: (state: IStocksState, { payload: bool }: any) => {
 		 debugger
 		return {...state, isShowMyStocks: bool}
-	 }
+	 },
 	 
+	 [setFilter.toString()]: (state: IStocksState, { payload: stockName }: any) => {
+		 debugger
+		return {...state, filter: stockName}
+	 }
 	
 }, initialState);
 
