@@ -3,18 +3,20 @@ import { createSelector } from "reselect";
 const stocksPageSelector = (state: any): any => state.stocksPage;
 
 export const stocksSelector = createSelector(stocksPageSelector, (stocksPage) => {
-	return stocksPage.stocks || []
+	switch (stocksPage.isShowMyStocks) {
+
+		case true:
+			return stocksPage.stocks.filter((stock: any) => stock.isAdded) || []
+
+		case stocksPage.isShowMyStocks:
+			return stocksPage.stocks || [];
+	}
 });
 
-export const currentStockIdSelector = createSelector(stocksPageSelector, (stocksPage) => {
-	return stocksPage.currentStockId || ''
-});
+export const currentStockIdSelector = createSelector(stocksPageSelector, (stocksPage) => stocksPage.currentStockId || ''
+);
 
 export const stockByIdSelector = createSelector(
 	[stocksSelector, currentStockIdSelector],
-	(stocks: [], currentStockId: string) => {
-		let qwe = stocks.find((stock: any) => stock.id === currentStockId) || {}
-		debugger
-		return qwe
-	}
+	(stocks: [], currentStockId: string) => stocks.find((stock: any) => stock.id === currentStockId) || {}
 );

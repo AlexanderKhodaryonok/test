@@ -7,6 +7,7 @@ const Routes = () => {
         <div>
             <Switch>
                 <Route path='/stock/:id?' component={StockPage} />
+                <Route path='/' component={StockPage} />
             </Switch>
         </div>
     );

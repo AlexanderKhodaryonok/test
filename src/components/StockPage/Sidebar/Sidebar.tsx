@@ -1,10 +1,20 @@
 import React from 'react';
 
-const Sidebar = () => {
+interface IOwnProps {
+	setShowMode: (bool: boolean) => void
+}
+
+interface IProps extends IOwnProps {}
+
+const Sidebar = (props: IProps) => {
+
+  const myStocks = () => props.setShowMode(true)
+  const allStocks = () => props.setShowMode(false)
+
   return (
     <div>
-      <div>All stocks</div>
-      <div>My stocks</div>
+      <div onClick={allStocks}>All stocks</div>
+      <div onClick={myStocks}>My stocks</div>
     </div>
   );
 }
