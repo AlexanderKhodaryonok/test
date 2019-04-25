@@ -1,24 +1,30 @@
 import React from 'react';
-import { NavLink } from "react-router-dom";
+import { withRouter, RouteComponentProps } from 'react-router';
 
 interface IOwnProps {
 	isAdded: any,
-	data: any
+	data: any,
+	moveStock: any
 }
 
-interface IProps extends IOwnProps { }
+interface IRouterProps extends RouteComponentProps<any, any> { }
+
+interface IProps extends IOwnProps, IRouterProps { }
 
 const Button = (props: IProps) => {
 	debugger
-	const title: string = props.isAdded === true ? 'sell' : 'bay';
+	const title: string = props.isAdded === true ? 'sell' : 'buy';
 
-	//const setStockIdOnClick = () => props.setStockId(props.id) 
+	const buttonClick = () => {
+		debugger
+		return props.moveStock({id: props.match.params.id, bool: !props.isAdded})
+	} 
 
 	return (
 		<>	
-		<button>{title}</button>
+		<button onClick={buttonClick} >{title}</button>
 		</>
 	);
 }
 
-export default Button;
+export default withRouter(Button);

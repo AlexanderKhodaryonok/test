@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import List from '../StockPage/List/List'
 import Chart from '../StockPage/ChartComponent/ChartComponent'
 import { stocksSelector, currentStockIdSelector, stockByIdSelector, filterSelector } from '../../Redux/selectors/stocksPageSelectors';
-import { setStockId, setShowMode, setFilter } from '../../Redux/actionCreators/stockPageActionCreators';
+import { setStockId, setShowMode, setFilter, moveStock } from '../../Redux/actionCreators/stockPageActionCreators';
 import { withRouter, RouteComponentProps } from 'react-router';
 import Sidebar from '../StockPage/Sidebar/Sidebar';
 import Search from '../StockPage/Search/Search';
@@ -31,6 +31,7 @@ interface IDispatchProps {
     setStockId: any;
     setShowMode: any;
     setFilter: any;
+    moveStock: any;
 }
 
 interface IOwnProps {
@@ -70,7 +71,9 @@ class ListContainer extends React.Component<IProps> {
                         />
                     </div>
                     <div className={s.chart}>
-                        <Chart {...this.props.stock} />
+                        <Chart {...this.props.stock}
+                            moveStock={this.props.moveStock}
+                        />
                     </div>
                 </div>
             </>
@@ -88,7 +91,8 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = {
     setStockId,
     setShowMode,
-    setFilter
+    setFilter,
+    moveStock
 }
 
 export default withRouter(connect<IStateProps, IDispatchProps>(mapStateToProps, mapDispatchToProps)(ListContainer));

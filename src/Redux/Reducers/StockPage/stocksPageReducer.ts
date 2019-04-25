@@ -1,6 +1,6 @@
 import { IStock, IStocksState } from './interfaces'
 import { handleActions } from 'redux-actions';
-import { setStockId, setShowMode, setFilter } from '../../actionCreators/stockPageActionCreators';
+import { setStockId, setShowMode, setFilter, moveStock } from '../../actionCreators/stockPageActionCreators';
 
 
 export const initialState = {
@@ -65,22 +65,38 @@ export const initialState = {
 	]
 }
 
+const findCurrentStock = (state: any, id: any) => {
+	debugger
+	let index
+	state.stocks.find((stock: any, idx: any) => {
+		if (stock.id === id) index = idx
+	})
+	
+	return index;
+}
+
 const stocksReducer = handleActions({
 
-	[setStockId.toString()]: (state: IStocksState, { payload: id }: any) => {
-         return { ...state, currentStockId: id }
-	 },
+	[setStockId.toString()]: (state: any, { payload: id }: any) => {
+		return { ...state, currentStockId: id }
+	},
 
-	 [setShowMode.toString()]: (state: IStocksState, { payload: bool }: any) => {
-		 debugger
-		return {...state, isShowMyStocks: bool}
-	 },
-	 
-	 [setFilter.toString()]: (state: IStocksState, { payload: stockName }: any) => {
-		 debugger
-		return {...state, filter: stockName}
-	 }
-	
+	[setShowMode.toString()]: (state: any, { payload: bool }: any) => {
+		return { ...state, isShowMyStocks: bool }
+	},
+
+	[setFilter.toString()]: (state: any, { payload: stockName }: any) => {
+		return { ...state, filter: stockName }
+	},
+
+	[moveStock.toString()]: (state: any, { payload: {bool, id} }: any) => {
+		debugger
+		let stateCopy = { ...state, stocks: [...state.stocks] }
+		let index:any = findCurrentStock(stateCopy, id)
+		stateCopy.stocks[index].isAdded = bool;
+		return stateCopy
+	},
+
 }, initialState);
 
 export default stocksReducer

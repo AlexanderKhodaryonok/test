@@ -5,7 +5,7 @@ const stocksPageSelector = (state: any): any => state.stocksPage;
 export const filterSelector = createSelector(stocksPageSelector, (stockPage) => stockPage.filter || '');
 
 export const stocksSelector = createSelector(stocksPageSelector, (stocksPage) => {
-
+debugger
 	switch (stocksPage.isShowMyStocks) {
 
 		case true:
@@ -29,5 +29,5 @@ export const currentStockIdSelector = createSelector(stocksPageSelector, (stocks
 
 export const stockByIdSelector = createSelector(
 	[stocksSelector, currentStockIdSelector],
-	(stocks: [], currentStockId: string) => stocks.find((stock: any) => stock.id === currentStockId) || {}
+	(stocks: [], currentStockId: string) => stocks && stocks.find((stock: any) => stock.id === currentStockId) || {}
 );

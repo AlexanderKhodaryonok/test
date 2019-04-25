@@ -1,14 +1,14 @@
 export interface IStock {
-	id: string
-	name: string
-	count: number
-	price: number
-	growth: string
-	isAdded: boolean
-	data: number[]
+	id: any
+	name: any
+	count: any
+	price: any
+	growth: any
+	isAdded: any
+	data: any[]
 }
 
 export interface IStocksState {
-	currentStockId?: string
-	stocks?: IStock[]
+	currentStockId?: any
+	stocks?: any
 }

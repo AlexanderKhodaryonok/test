@@ -11,6 +11,7 @@ interface IOwnProps {
 	growth: string
 	isAdded: boolean
 	data: number[]
+	moveStock: any
 }
 
 interface IProps extends IOwnProps { }
@@ -39,6 +40,7 @@ const Chart = (props: IProps) => {
 						<Button
 							isAdded={props.isAdded}
 							data={props.data}
+							moveStock={props.moveStock}
 						/>
 					</div>
 				</div> : <span>Please, select stock</span>
