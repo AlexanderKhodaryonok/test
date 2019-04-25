@@ -3,42 +3,52 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from 'reselect';
 import List from '../StockPage/List/List'
 import Chart from '../StockPage/ChartComponent/ChartComponent'
-import { stocksSelector } from '../../Redux/selectors/stocksPageSelectors';
+import { stocksSelector, currentStockIdSelector, stockByIdSelector } from '../../Redux/selectors/stocksPageSelectors';
+import { setStockId } from '../../Redux/actionCreators/stockPageActionCreators';
+import { withRouter, RouteComponentProps } from 'react-router';
 
 interface IStock {
-	id: string
-	name: string
-	count: number
-	price: number
-	growth: string
-	isAdded: boolean
-	data: number[]
+    id: string
+    name: string
+    count: number
+    price: number
+    growth: string
+    isAdded: boolean
+    data: number[]
 }
 
 interface IStateProps {
-    stocks?: IStock[];
-    currentStockId?: string;
+    stocks: IStock[];
+    currentStockId: string;
+    stock: any;
 }
 
-interface IDispatchProps{
-    func?: any;
+interface IDispatchProps {
+    setStockId: any;
 }
 
 interface IOwnProps {
-    ownProps: any;
+    ownProps?: any;
 }
 
-interface IProps extends IStateProps, IDispatchProps, IOwnProps {}
+interface IRouterProps extends RouteComponentProps<any, any> { }
 
-class ListContainer extends React.Component <IProps> {
-    constructor(props: IProps){
-        super(props)
+interface IProps extends IStateProps, IDispatchProps, IOwnProps, IRouterProps { }
+
+class ListContainer extends React.Component<IProps> {
+
+    componentDidMount() {
+        this.props.setStockId(this.props.match.params.id)
     }
+
     render() {
         return (
             <>
-                <List {...this.props} />
-                <Chart />
+                <List
+                    stocks={this.props.stocks}
+                    setStockId={this.props.setStockId}
+                />
+                <Chart {...this.props.stock} />
             </>
         );
     }
@@ -46,12 +56,12 @@ class ListContainer extends React.Component <IProps> {
 
 const mapStateToProps = createStructuredSelector({
     stocks: stocksSelector,
+    currentStockId: currentStockIdSelector,
+    stock: stockByIdSelector
 });
 
-const mapDispatchToProps = (dispatch: any): IDispatchProps => {
-    return {
-
-    }
+const mapDispatchToProps = {
+    setStockId
 }
 
-export default connect<IStateProps, IDispatchProps>(mapStateToProps, mapDispatchToProps)(ListContainer);
+export default withRouter(connect<IStateProps, IDispatchProps>(mapStateToProps, mapDispatchToProps)(ListContainer));

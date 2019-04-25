@@ -2,32 +2,46 @@ import React from 'react';
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
-const Chart = () => {
+interface IOwnProps {
+	id: string
+	name: string
+	count: number
+	price: number
+	growth: string
+	isAdded: boolean
+	data: number[]
+}
 
-  const options = {
-    title: {
-      text: 'My chart'
-    },
-    series: [{
-      data: [1, 2, 3, 2, 6, 4, 7, 4, 8]
-    }]
-  }
+interface IProps extends IOwnProps {}
 
-  return (
-    <>
-      <div>
-        <div>price</div>
-        <div>growth</div>
-        <div>Name</div>
-        <div>
-          <HighchartsReact
-            highcharts={Highcharts}
-            options={options as any}
-          />
-        </div>
-      </div>
-    </>
-  );
+const Chart = (props: IProps) => {
+	const options = {
+		title: {
+			text: props.name
+		},
+		series: [{
+			data: props.data
+		}]
+	}
+	
+debugger
+	return (
+		<>
+			{
+				props.data ? <div>
+					<div>price</div>
+					<div>growth</div>
+					<div>Name</div>
+					<div>
+						<HighchartsReact
+							highcharts={Highcharts}
+							options={options as any}
+						/>
+					</div>
+				</div> : <span>Select stock</span>
+			}
+		</>
+	);
 }
 
 export default Chart;

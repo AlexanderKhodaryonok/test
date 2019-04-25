@@ -1,10 +1,11 @@
 import { combineReducers, createStore } from "redux";
-import stocksReducer from './StockPage/stocksReducer'
+import stocksPageReducer from './StockPage/stocksPageReducer'
 
 const rootReducer = combineReducers({
-    stocksPage: stocksReducer
+    stocksPage: stocksPageReducer
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+(window as any).__REDUX_DEVTOOLS_EXTENSION__());
 
 export default store;

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import Sidebar from './StockPage/Sidebar/Sidebar'
 import Container from './containers/Container'
 import s from './StockPage.module.scss';
-
+/*
 interface IStateProps {
     stateProps?: any
 }
@@ -10,20 +10,21 @@ interface IStateProps {
 interface IDispatchProps{
     dispatchProps?: any
 }
-
+*/
 interface IOwnProps {
-    ownProps?: any;
+	readonly ownProps?: any;
 }
 
-interface IProps extends IStateProps, IDispatchProps, IOwnProps {}
+interface IProps extends /*IStateProps, IDispatchProps,*/ IOwnProps { }
 
-const StockPage = (props: any) => {
-  return (
-    <div className={s.wrapper}>
-      <Sidebar />
-      <Container {...props}/>
-    </div>
-  );
+//why crash when I set type as Iprops?
+const StockPage: FunctionComponent<any> = (props) => {
+	return (
+		<div className={s.wrapper}>
+			<Sidebar />
+			<Container {...props} />
+		</div>
+	);
 }
 
 export default StockPage;

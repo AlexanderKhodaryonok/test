@@ -1,7 +1,9 @@
-import { handleActions } from 'redux-actions';
 import { IStock, IStocksState } from './interfaces'
+import { handleActions } from 'redux-actions';
+import { setStockId } from '../../actionCreators/stockPageActionCreators';
 
-const initialState = {
+
+export const initialState = {
 	currentStockId: '',
 	stocks: [
 		{
@@ -62,6 +64,12 @@ const initialState = {
 }
 
 const stocksReducer = handleActions({
+
+	[setStockId.toString()]: (state: IStocksState, {payload: id}: any) => {
+		let NS = {...state}
+         return { ...state, currentStockId: id }
+	 },
+	 
 	
 }, initialState);
 

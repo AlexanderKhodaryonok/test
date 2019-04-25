@@ -1,7 +1,33 @@
 import React from 'react';
-import {IStock, IStocksState } from '../../../Redux/Reducers/StockPage/interfaces'
+import Button from './Button/Button'
 
-const List = ( props: IStocksState ) => {
+interface IStock {
+	id: string
+	name: string
+	count: number
+	price: number
+	growth?: string
+	isAdded?: boolean
+	data?: number[]
+}
+
+// interface IStateProps {
+//     stocks?: IStock[];
+//     currentStockId?: string;
+// }
+
+// interface IDispatchProps{
+//     setStockId?: any;
+// }
+
+interface IOwnProps {
+	stocks?: IStock[];
+	setStockId: (id: string) => void
+}
+
+interface IProps extends IOwnProps {}
+
+const List = (props: IProps) => {
 	return (
 		<div>
 			{
@@ -10,7 +36,12 @@ const List = ( props: IStocksState ) => {
 						<div>{stock.name}</div>
 						<div>{stock.count} shares</div>
 						<div>Chart</div>
-						<button>{stock.price}</button>
+						<Button 
+							price={stock.price}
+							id={stock.id}
+							setStockId={props.setStockId}
+						/>
+						{/*<button>{stock.price}</button>*/}
 					</div>
 				))
 			}
