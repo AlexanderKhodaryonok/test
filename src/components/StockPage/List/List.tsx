@@ -11,15 +11,6 @@ interface IStock {
 	data?: number[]
 }
 
-// interface IStateProps {
-//     stocks?: IStock[];
-//     currentStockId?: string;
-// }
-
-// interface IDispatchProps{
-//     setStockId?: any;
-// }
-
 interface IOwnProps {
 	stocks?: IStock[];
 	setStockId: (id: string) => void
@@ -41,7 +32,6 @@ const List = (props: IProps) => {
 							id={stock.id}
 							setStockId={props.setStockId}
 						/>
-						{/*<button>{stock.price}</button>*/}
 					</div>
 				))
 			}

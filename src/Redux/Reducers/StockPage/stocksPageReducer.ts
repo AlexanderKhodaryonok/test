@@ -4,12 +4,13 @@ import { setStockId, setShowMode } from '../../actionCreators/stockPageActionCre
 
 
 export const initialState = {
+	filter: 'TWTR',
 	isShowMyStocks: true,
 	currentStockId: '',
 	stocks: [
 		{
 			id: '1',
-			name: 'APPL',
+			name: 'APPLT',
 			count: 150,
 			price: 105.67,
 			growth: '9.23%',
@@ -71,6 +72,7 @@ const stocksReducer = handleActions({
 	 },
 
 	 [setShowMode.toString()]: (state: IStocksState, {payload: bool}: any) => {
+		 debugger
 		return {...state, isShowMyStocks: bool}
 	 }
 	 

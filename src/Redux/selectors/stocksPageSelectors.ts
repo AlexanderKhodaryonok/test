@@ -2,14 +2,29 @@ import { createSelector } from "reselect";
 
 const stocksPageSelector = (state: any): any => state.stocksPage;
 
+export const filterSelector = createSelector(stocksPageSelector, (stockPage) => stockPage.filter || '');
+
 export const stocksSelector = createSelector(stocksPageSelector, (stocksPage) => {
+	debugger
+
 	switch (stocksPage.isShowMyStocks) {
 
 		case true:
-			return stocksPage.stocks.filter((stock: any) => stock.isAdded) || []
+			let myStocks = stocksPage.stocks.filter((stock: any) => stock.isAdded) || [];
+			if (stocksPage.filter) {
+				let filteredStocks = myStocks.filter((stock: any) => stock.name.toLowerCase().includes(stocksPage.filter.toLowerCase()))
+				return filteredStocks.filter((stock: any) => stock.isAdded) || []
+			} else return myStocks;
 
-		case stocksPage.isShowMyStocks:
-			return stocksPage.stocks || [];
+		case false:
+			let allStocks = stocksPage.stocks || [];
+			if (stocksPage.filter) {
+				let filteredAllStocks = allStocks.filter((stock: any) => {
+					return stock.name.toLowerCase().includes(stocksPage.filter.toLowerCase())
+				}
+				)
+				return filteredAllStocks || [];
+			} else return allStocks;
 	}
 });
 
