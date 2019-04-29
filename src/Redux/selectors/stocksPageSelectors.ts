@@ -4,8 +4,9 @@ const stocksPageSelector = (state: any): any => state.stocksPage;
 
 export const filterSelector = createSelector(stocksPageSelector, (stockPage) => stockPage.filter || '');
 
+export const isShowMyStocksSelector = createSelector(stocksPageSelector, (stockPage) => stockPage.isShowMyStocks)
+
 export const stocksSelector = createSelector(stocksPageSelector, (stocksPage) => {
-debugger
 	switch (stocksPage.isShowMyStocks) {
 
 		case true:

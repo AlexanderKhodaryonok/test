@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
+import s from './button.module.scss'
 
 interface IOwnProps {
 	isAdded: any,
@@ -12,17 +13,18 @@ interface IRouterProps extends RouteComponentProps<any, any> { }
 interface IProps extends IOwnProps, IRouterProps { }
 
 const Button = (props: IProps) => {
-	debugger
-	const title: string = props.isAdded === true ? 'sell' : 'buy';
+
+
+	const title: string = props.isAdded === true ? 'Sell' : 'Buy';
+	const colorClass: any = props.isAdded === true ? s.red : s.green;
 
 	const buttonClick = () => {
-		debugger
 		return props.moveStock({id: props.match.params.id, bool: !props.isAdded})
 	} 
 
 	return (
 		<>	
-		<button onClick={buttonClick} >{title}</button>
+		<button className={`${s.button} ${colorClass}`} onClick={buttonClick} >{title}</button>
 		</>
 	);
 }

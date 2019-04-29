@@ -1,0 +1,38 @@
+.wrapper {
+	display: flex;
+	width: 100%;
+}
+
+.informationBlock {
+	width: 90%;
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+}
+
+.name {
+	color: black;
+}
+
+.count {
+	color: grey;
+}
+
+.chart {
+	margin: 10px 0 0 0;
+	max-width: 50px;
+	max-height: 50px;
+	
+}
+
+.active {
+	background-color: white;
+	width: 100%;
+}
+
+.activeItemBlock {
+    color: rgb(66, 235, 244);
+    padding-top: 10px;
+    border: 1px solid rgb(66, 235, 244);
+    border-radius: 10px;
+}

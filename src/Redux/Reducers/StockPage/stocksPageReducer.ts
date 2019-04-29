@@ -65,13 +65,12 @@ export const initialState = {
 	]
 }
 
+//put into helpers
 const findCurrentStock = (state: any, id: any) => {
-	debugger
 	let index
 	state.stocks.find((stock: any, idx: any) => {
 		if (stock.id === id) index = idx
 	})
-	
 	return index;
 }
 
@@ -90,7 +89,6 @@ const stocksReducer = handleActions({
 	},
 
 	[moveStock.toString()]: (state: any, { payload: {bool, id} }: any) => {
-		debugger
 		let stateCopy = { ...state, stocks: [...state.stocks] }
 		let index:any = findCurrentStock(stateCopy, id)
 		stateCopy.stocks[index].isAdded = bool;

@@ -1,4 +1,5 @@
 import React from 'react';
+import s from './search.module.scss'
 
 interface IOwnProps {
 	filter: string;
@@ -14,8 +15,9 @@ const Search = (props: IProps) => {
 	return (
 		<>
 			<input 
+				className={s.search}
 				type="text"
-				placeholder={'search'}
+				placeholder={'Search by stock or market name'}
 				onChange={changeFilter}
 			/>
 		</>
