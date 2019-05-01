@@ -1,0 +1,8 @@
+@import '../variables/variables.scss';
+
+%button-common {
+	border-radius: $border-radius;
+	margin: 3px 0 0 0;
+	color: white;
+	border: none;
+}

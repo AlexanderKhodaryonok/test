@@ -3,7 +3,7 @@ import { handleActions } from 'redux-actions';
 import { setStockId, setShowMode, setFilter, moveStock } from '../../actionCreators/stockPageActionCreators';
 
 
-export const initialState = {
+export const initialState: IStocksState = {
 	filter: '',
 	isShowMyStocks: true,
 	currentStockId: '',
@@ -66,9 +66,9 @@ export const initialState = {
 }
 
 //put into helpers
-const findCurrentStock = (state: any, id: any) => {
+const findCurrentStock = (state: any, id: string) => {
 	let index
-	state.stocks.find((stock: any, idx: any) => {
+	state.stocks.find((stock: IStock, idx: number) => {
 		if (stock.id === id) index = idx
 	})
 	return index;
@@ -90,7 +90,7 @@ const stocksReducer = handleActions({
 
 	[moveStock.toString()]: (state: any, { payload: {bool, id} }: any) => {
 		let stateCopy = { ...state, stocks: [...state.stocks] }
-		let index:any = findCurrentStock(stateCopy, id)
+		let index: any = findCurrentStock(stateCopy, id)
 		stateCopy.stocks[index].isAdded = bool;
 		return stateCopy
 	},

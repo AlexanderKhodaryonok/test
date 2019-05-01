@@ -20,7 +20,7 @@ const Sidebar = (props: IProps) => {
   const allStocks = () => props.setShowMode(false)
 
   return (
-    <div>
+    <div className={s.wrapper}>
       <div className={allStocksClass} onClick={allStocks}>All stocks</div>
       <div className={myStocksClass} onClick={myStocks}>My stocks</div>
     </div>

@@ -1,6 +1,8 @@
+@import '../../styles/main.scss';
+
 .wrapper {
 	display: grid;
-	grid-template-rows: 50px 100%;
+	grid-template-rows: 10vh 90vh;
 	grid-template-columns: 10% 20% 70%;
 	grid-template-areas: 
 	'logo search chart'
@@ -17,24 +19,24 @@
 
 .sidebar {
 	grid-area: sidebar;
-	background-color: #efefef;
+	background-color: $background-color;
 }
 
 .search {
 	grid-area: search;
-	background-color: #efefef;
+	background-color: $background-color;
 	padding: 10px;
 }
 
 .list {
 	grid-area: list;
-	background-color: #efefef;
+	background-color: $background-color;
 }
 
 .chart {
 	grid-area: chart;
 	height: 100%;
-	background-color: white;
+	background-color: $second-color;
 }
 
 .button{

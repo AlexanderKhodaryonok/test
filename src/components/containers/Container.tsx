@@ -25,7 +25,7 @@ interface IStateProps {
     currentStockId: string;
     stock: any;
     filter: string;
-    isShowMyStocks: any;
+    isShowMyStocks: boolean;
 }
 
 interface IDispatchProps {
@@ -35,13 +35,11 @@ interface IDispatchProps {
     moveStock: any;
 }
 
-interface IOwnProps {
-    ownProps?: any;
-}
+
 
 interface IRouterProps extends RouteComponentProps<any, any> { }
 
-interface IProps extends IStateProps, IDispatchProps, IOwnProps, IRouterProps { }
+interface IProps extends IStateProps, IDispatchProps, IRouterProps { }
 
 class ListContainer extends React.Component<IProps> {
 
