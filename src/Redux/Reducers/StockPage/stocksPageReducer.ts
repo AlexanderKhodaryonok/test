@@ -1,9 +1,10 @@
 import { IStock, IStocksState } from './interfaces'
 import { handleActions } from 'redux-actions';
-import { setStockId, setShowMode, setFilter, moveStock } from '../../actionCreators/stockPageActionCreators';
-
+import { setStockId, setShowMode, setFilter, moveStock, setStatus } from '../../actionCreators/stockPageActionCreators';
+import { statuses } from '../../../helpers/statuses/statuses';
 
 export const initialState: IStocksState = {
+	status: statuses.init,
 	filter: '',
 	isShowMyStocks: true,
 	currentStockId: '',
@@ -88,6 +89,10 @@ const stocksReducer = handleActions({
 
 	[setFilter.toString()]: (state: IStocksState, { payload: stockName }: any) => {
 		return { ...state, filter: stockName }
+	},
+
+	[setStatus.toString()]: (state: IStocksState, { payload: status }: any) => {
+		return { ...state, status }
 	},
 
 	[moveStock.toString()]: (state: IStocksState, { payload: {bool, id} }: any) => {

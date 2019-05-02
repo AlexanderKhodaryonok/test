@@ -1,3 +1,4 @@
+
 export interface IStock {
 	id: string;
 	name: string;
@@ -6,11 +7,12 @@ export interface IStock {
 	growth: string;
 	isAdded: boolean;
 	data: number[];
-}
+};
 
 export interface IStocksState {
+	status: string;
 	currentStockId: string;
 	stocks: IStock[];
 	filter: string;
 	isShowMyStocks: boolean;
-}
+};
