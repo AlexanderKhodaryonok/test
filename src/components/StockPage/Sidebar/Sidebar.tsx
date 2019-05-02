@@ -3,15 +3,15 @@ import s from './sidebar.module.scss'
 
 interface IOwnProps {
   setShowMode: (bool: boolean) => void
-  isShowMyStocks: any;
+  isShowMyStocks: boolean;
 }
 
 interface IProps extends IOwnProps { }
 
 const Sidebar = (props: IProps) => {
 
-  let allStocksClass: any;
-  let myStocksClass: any;
+  let allStocksClass: string = '';
+  let myStocksClass: string = '';
   
   if (props.isShowMyStocks) myStocksClass = s.active;
   if (!props.isShowMyStocks) allStocksClass = s.active;

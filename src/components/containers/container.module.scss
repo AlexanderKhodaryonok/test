@@ -20,12 +20,14 @@
 .sidebar {
 	grid-area: sidebar;
 	background-color: $background-color;
+	border-right: $border;
 }
 
 .search {
 	grid-area: search;
 	background-color: $background-color;
 	padding: 10px;
+	border-bottom: $border;
 }
 
 .list {

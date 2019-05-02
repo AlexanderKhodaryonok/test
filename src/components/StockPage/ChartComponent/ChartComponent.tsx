@@ -12,7 +12,7 @@ interface IOwnProps {
 	growth: string;
 	isAdded: boolean;
 	data: number[];
-	moveStock: any;
+	moveStock: () => void;
 }
 
 interface IProps extends IOwnProps { }

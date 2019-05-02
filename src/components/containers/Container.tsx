@@ -29,9 +29,9 @@ interface IStateProps {
 }
 
 interface IDispatchProps {
-    setStockId: any;
-    setShowMode: any;
-    setFilter: any;
+    setStockId: (id: string) => void;
+    setShowMode: (bool: boolean) => void;
+    setFilter: (id: string) => void;
     moveStock: any;
 }
 

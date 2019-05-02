@@ -66,8 +66,10 @@ export const initialState: IStocksState = {
 }
 
 //put into helpers
-const findCurrentStock = (state: any, id: string) => {
-	let index
+//how to add type to state (in parameters)?
+const findCurrentStock = (state: any, id: string): number => {
+	//is it ok? If not assigned value to index - drop mistake
+	let index: number = 0;
 	state.stocks.find((stock: IStock, idx: number) => {
 		if (stock.id === id) index = idx
 	})
@@ -75,22 +77,22 @@ const findCurrentStock = (state: any, id: string) => {
 }
 
 const stocksReducer = handleActions({
-
-	[setStockId.toString()]: (state: any, { payload: id }: any) => {
+	
+	[setStockId.toString()]: (state: IStocksState, { payload: id }: any) => {
 		return { ...state, currentStockId: id }
 	},
 
-	[setShowMode.toString()]: (state: any, { payload: bool }: any) => {
+	[setShowMode.toString()]: (state: IStocksState, { payload: bool }: any) => {
 		return { ...state, isShowMyStocks: bool }
 	},
 
-	[setFilter.toString()]: (state: any, { payload: stockName }: any) => {
+	[setFilter.toString()]: (state: IStocksState, { payload: stockName }: any) => {
 		return { ...state, filter: stockName }
 	},
 
-	[moveStock.toString()]: (state: any, { payload: {bool, id} }: any) => {
+	[moveStock.toString()]: (state: IStocksState, { payload: {bool, id} }: any) => {
 		let stateCopy = { ...state, stocks: [...state.stocks] }
-		let index: any = findCurrentStock(stateCopy, id)
+		let index: number = findCurrentStock(stateCopy, id)
 		stateCopy.stocks[index].isAdded = bool;
 		return stateCopy
 	},
