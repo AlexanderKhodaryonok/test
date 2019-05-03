@@ -13,6 +13,7 @@ interface IOwnProps {
 	isAdded: boolean;
 	data: number[];
 	moveStock: () => void;
+	sendStocks: any;
 }
 
 interface IProps extends IOwnProps { }
@@ -45,6 +46,7 @@ const Chart = (props: IProps) => {
 							isAdded={props.isAdded}
 							data={props.data}
 							moveStock={props.moveStock}
+							sendStocks={props.sendStocks}
 						/>
 					</div>
 				</div> : <span>Please, select stock</span>

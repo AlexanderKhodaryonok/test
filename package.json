@@ -25,6 +25,7 @@
     "redux-actions": "^2.6.5",
     "redux-saga": "^1.0.2",
     "reselect": "^4.0.0",
+    "tslint": "^5.16.0",
     "typescript": "3.4.4"
   },
   "scripts": {
@@ -50,6 +51,7 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^4.3.2",
+    "axios-mock-adapter": "^1.16.0",
     "redux-devtools-extension": "^2.13.8",
     "tslint-config-airbnb": "^5.11.1"
   }
