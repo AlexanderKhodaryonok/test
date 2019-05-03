@@ -4,21 +4,20 @@ import { createStructuredSelector } from 'reselect';
 import List from '../StockPage/List/List'
 import Chart from '../StockPage/ChartComponent/ChartComponent'
 import { stocksSelector, currentStockIdSelector, stockByIdSelector, filterSelector, isShowMyStocksSelector } from '../../Redux/selectors/stocksPageSelectors';
-import { setStockId, setShowMode, setFilter, moveStock, getStocks, sendStocks } from '../../Redux/actionCreators/stockPageActionCreators';
+import { setStockId, setShowMode, setFilter, getStocks, sendStocks } from '../../Redux/actionCreators/stockPageActionCreators';
 import { withRouter, RouteComponentProps } from 'react-router';
 import Sidebar from '../StockPage/Sidebar/Sidebar';
 import Search from '../StockPage/Search/Search';
 import s from './container.module.scss';
-import { any } from 'prop-types';
 
 interface IStock {
-  id: string
-  name: string
-  count: number
-  price: number
-  growth: string
-  isAdded: boolean
-  data: number[]
+   id: string
+   name: string
+   count: number
+   price: number
+   growth: string
+   isAdded: boolean
+   data: number[]
 }
 
 interface IStateProps {
@@ -33,7 +32,6 @@ interface IDispatchProps {
   setStockId: (id: string) => void;
   setShowMode: (bool: boolean) => void;
   setFilter: (id: string) => void;
-  moveStock: any;
   getStocks: any;
   sendStocks: any;
 }
@@ -52,6 +50,7 @@ class ListContainer extends React.Component<IProps> {
   }
 
   render() {
+    debugger
     return (
       <div className={s.wrapper}>
         <div className={s.logo}>
@@ -78,7 +77,6 @@ class ListContainer extends React.Component<IProps> {
         </div>
         <div className={s.chart}>
           <Chart {...this.props.stock}
-            moveStock={this.props.moveStock}
             sendStocks={this.props.sendStocks}
           />
         </div>
@@ -99,7 +97,6 @@ const mapDispatchToProps = {
   setStockId,
   setShowMode,
   setFilter,
-  moveStock,
   getStocks,
   sendStocks,
 }

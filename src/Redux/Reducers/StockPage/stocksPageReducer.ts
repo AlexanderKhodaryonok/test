@@ -28,7 +28,6 @@ const stocksReducer = handleActions({
 	},
 
 	[setShowMode.toString()]: (state: IStocksState, { payload: bool}: any) => {
-		debugger
 		return { ...state, isShowMyStocks: bool }
 	},
 
@@ -45,7 +44,6 @@ const stocksReducer = handleActions({
 	},
 
 	[moveStock.toString()]: (state: IStocksState, { payload: {bool, id} }: any) => {
-		debugger
 		let stateCopy = { ...state, stocks: [...state.stocks] }
 		let index: number = findCurrentStock(stateCopy, id)
 		stateCopy.stocks[index].isAdded = bool;

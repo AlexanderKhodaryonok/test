@@ -13,7 +13,6 @@ export function* getStocksSaga(): any {
 export function* sendStocksSaga(action: any): any {
     yield put(moveStock(action.payload))
     const state = yield select();
-    debugger
     yield put(setStatus(statuses.inProgress))
     yield setStocksRequest(state.stocksPage.stocks);
     yield put(setStatus(statuses.success))

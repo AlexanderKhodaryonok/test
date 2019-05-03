@@ -119,7 +119,4 @@ mock.onPost('/stocks').reply(200, {
 });
 
 export const getStocksRequest = () => api.get('/stocks');
-export const setStocksRequest = (stocks: any) => {
-    debugger
-    api.post('/stocks', stocks);
-};
+export const setStocksRequest = (stocks: any) => api.post('/stocks', stocks);

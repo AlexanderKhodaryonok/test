@@ -3,9 +3,8 @@ import { withRouter, RouteComponentProps } from 'react-router';
 import s from './button.module.scss'
 
 interface IOwnProps {
-  isAdded: any;
-  data: any;
-  moveStock: any;
+  isAdded: boolean;
+  data: number[];
   sendStocks: any;
 }
 
@@ -20,7 +19,6 @@ const Button = (props: IProps) => {
 
   const buttonClick = () => {
     return props.sendStocks({ id: props.match.params.id, bool: !props.isAdded });
-    //return props.moveStock({ id: props.match.params.id, bool: !props.isAdded });
   };
 
   return (
