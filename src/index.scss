@@ -1,5 +1,11 @@
+@import './styles/main.scss'; 
+
+*{
+  font-family: $main-font;
+}
+
 body {
-  background-color: #efefef;
+  background-color: $background-color;
   margin: 0;
   padding: 0;
   height: 100vh;

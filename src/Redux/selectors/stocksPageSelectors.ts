@@ -1,4 +1,6 @@
 import { createSelector } from "reselect";
+import { IStock } from "../Reducers/StockPage/interfaces";
+import { filterByName } from "../../helpers/functions/functions";
 
 const stocksPageSelector = (state: any): any => state.stocksPage;
 
@@ -10,18 +12,19 @@ export const stocksSelector = createSelector(stocksPageSelector, (stocksPage) =>
 	switch (stocksPage.isShowMyStocks) {
 
 		case true:
-			let myStocks = stocksPage.stocks.filter((stock: any) => stock.isAdded) || [];
+			const myStocks = stocksPage.stocks.filter((stock: IStock) => stock.isAdded) || [];
 			if (stocksPage.filter) {
-				let filteredStocks = myStocks.filter((stock: any) => stock.name.toLowerCase().includes(stocksPage.filter.toLowerCase()))
-				return filteredStocks.filter((stock: any) => stock.isAdded) || []
+				return filterByName(myStocks, stocksPage.filter);
 			} else return myStocks;
 
 		case false:
-			let allStocks = stocksPage.stocks || [];
+			const allStocks = stocksPage.stocks || [];
 			if (stocksPage.filter) {
-				let filteredAllStocks = allStocks.filter((stock: any) => stock.name.toLowerCase().includes(stocksPage.filter.toLowerCase()))
-				return filteredAllStocks || [];
+				return filterByName(allStocks, stocksPage.filter);
 			} else return allStocks;
+
+		default:
+			return allStocks
 	}
 });
 
@@ -30,5 +33,5 @@ export const currentStockIdSelector = createSelector(stocksPageSelector, (stocks
 
 export const stockByIdSelector = createSelector(
 	[stocksSelector, currentStockIdSelector],
-	(stocks: [], currentStockId: string) => stocks && stocks.find((stock: any) => stock.id === currentStockId) || {}
+	(stocks: [], currentStockId: string) => stocks && stocks.find((stock: IStock) => stock.id === currentStockId)
 );

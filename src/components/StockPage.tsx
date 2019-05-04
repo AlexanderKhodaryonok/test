@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import Container from './containers/Container'
 import s from './StockPage.module.scss';
 

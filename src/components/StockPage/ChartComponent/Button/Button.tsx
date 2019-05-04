@@ -5,7 +5,7 @@ import s from './button.module.scss'
 interface IOwnProps {
   isAdded: boolean;
   data: number[];
-  sendStocks: any;
+  sendStocks: ( payload: { id: string, bool: boolean } ) => void;
 }
 
 interface IRouterProps extends RouteComponentProps<any, any> { }

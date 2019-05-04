@@ -2,8 +2,8 @@ import React from 'react';
 import s from './price.module.scss'
 
 interface IOwnProps {
-	price?: any;
-	data?: any;
+	price: number;
+	data: number[];
 }
 
 interface IProps extends IOwnProps { }

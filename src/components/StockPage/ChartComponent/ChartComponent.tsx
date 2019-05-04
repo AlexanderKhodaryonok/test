@@ -12,8 +12,7 @@ interface IOwnProps {
   growth: string;
   isAdded: boolean;
   data: number[];
-  moveStock: () => void;
-  sendStocks: any;
+  sendStocks: ( payload: { id: string, bool: boolean } ) => void;
 }
 
 interface IProps extends IOwnProps { }
@@ -32,15 +31,14 @@ const Chart = (props: IProps) => {
   }
 
   return (
-    <div>
+    <>
       {
         props.data ? <div className={s.wrapper}>
-          <div>
-            <HighchartsReact
-              highcharts={Highcharts}
-              options={options as any}
-            />
-          </div>
+          <HighchartsReact
+            highcharts={Highcharts}
+            options={options as any}
+            className={s.chart}
+          />
           <div className={s.button}>
             <Button
               isAdded={props.isAdded}
@@ -50,7 +48,7 @@ const Chart = (props: IProps) => {
           </div>
         </div> : <span>Please, select stock</span>
       }
-    </div>
+    </>
   );
 }
 

@@ -3,22 +3,32 @@ import { setStatus, setStocks, moveStock } from "../actionCreators/stockPageActi
 import { statuses } from "../../helpers/statuses/statuses";
 import { getStocksRequest, setStocksRequest } from "../../services/stockPageService";
 
-export function* getStocksSaga(): any {
-    yield put(setStatus(statuses.inProgress))
-    let responce = yield getStocksRequest();
-    yield put(setStocks(responce.data))
-    yield put(setStatus(statuses.success))
+export function* getStocksSaga() {
+    try {
+        yield put(setStatus(statuses.inProgress))
+        let responce = yield getStocksRequest();
+        yield put(setStocks(responce.data))
+        yield put(setStatus(statuses.success))
+    }
+    catch (error) {
+        return console.log('getStocksRequest ' + error.message)
+    }
 };
 
-export function* sendStocksSaga(action: any): any {
-    yield put(moveStock(action.payload))
-    const state = yield select();
-    yield put(setStatus(statuses.inProgress))
-    yield setStocksRequest(state.stocksPage.stocks);
-    yield put(setStatus(statuses.success))
+export function* sendStocksSaga(action: any) {
+    try {
+        yield put(moveStock(action.payload))
+        const state = yield select();
+        yield put(setStatus(statuses.inProgress))
+        yield setStocksRequest(state.stocksPage.stocks);
+        yield put(setStatus(statuses.success))
+    }
+    catch (error) {
+        return console.log('setStocksRequest ' + error.message)
+    }
 };
 
-export function* watcherSaga(): any {
+export function* watcherSaga() {
     yield takeEvery("TEST/STOCK_PAGE/GET_STOCKS", getStocksSaga);
     yield takeEvery("TEST/STOCK_PAGE/SEND_STOCKS", sendStocksSaga);
 };

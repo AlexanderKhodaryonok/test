@@ -28,12 +28,12 @@ const List = (props: IProps) => {
 		<div>
 			{
 				props.stocks && props.stocks.map((stock: IStock): any => (
-					<div className={s.wrapper}>
+					<div key={stock.id} className={s.wrapper}>
 						<NavLink to={`/stock/${stock.id}`} activeClassName={s.active} 
 						onClick={() => {
 							return props.setStockId(stock.id)
 							}}>
-							<div className={s.informationBlock} key={stock.id}>
+							<div className={s.informationBlock}>
 								<div>
 									<div className={s.name}>{stock.name}</div>
 									<div className={s.count}>{stock.count} shares</div>

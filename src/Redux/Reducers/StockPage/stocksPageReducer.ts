@@ -1,7 +1,8 @@
-import { IStock, IStocksState } from './interfaces'
+import { IStocksState } from './interfaces'
 import { handleActions } from 'redux-actions';
 import { setStockId, setShowMode, setFilter, moveStock, setStatus, setStocks } from '../../actionCreators/stockPageActionCreators';
 import { statuses } from '../../../helpers/statuses/statuses';
+import { findCurrentStock } from '../../../helpers/functions/functions';
 
 export const initialState: IStocksState = {
 	status: statuses.init,
@@ -11,39 +12,29 @@ export const initialState: IStocksState = {
 	stocks: []
 }
 
-//put into helpers
-//how to add type to state (in parameters)?
-const findCurrentStock = (state: any, id: string): number => {
-	let index: number = 0;
-	state.stocks.find((stock: IStock, idx: number) => {
-		if (stock.id === id) index = idx
-	})
-	return index;
-}
-
 const stocksReducer = handleActions({
 	
-	[setStockId.toString()]: (state: IStocksState, { payload: id }: any) => {
+	[setStockId.toString()]: (state: IStocksState, { payload: id }: any): IStocksState => {
 		return { ...state, currentStockId: id }
 	},
 
-	[setShowMode.toString()]: (state: IStocksState, { payload: bool}: any) => {
+	[setShowMode.toString()]: (state: IStocksState, { payload: bool}: any): IStocksState => {
 		return { ...state, isShowMyStocks: bool }
 	},
 
-	[setFilter.toString()]: (state: IStocksState, { payload: stockName }: any) => {
+	[setFilter.toString()]: (state: IStocksState, { payload: stockName }: any): IStocksState => {
 		return { ...state, filter: stockName }
 	},
 
-	[setStatus.toString()]: (state: IStocksState, { payload: status }: any) => {
+	[setStatus.toString()]: (state: IStocksState, { payload: status }: any): IStocksState => {
 		return { ...state, status }
 	},
 
-	[setStocks.toString()]: (state: IStocksState, { payload: { stocks } }: any) => {
+	[setStocks.toString()]: (state: IStocksState, { payload: { stocks } }: any): IStocksState => {
 		return { ...state, stocks }
 	},
 
-	[moveStock.toString()]: (state: IStocksState, { payload: {bool, id} }: any) => {
+	[moveStock.toString()]: (state: IStocksState, { payload: {bool, id} }: any): IStocksState => {
 		let stateCopy = { ...state, stocks: [...state.stocks] }
 		let index: number = findCurrentStock(stateCopy, id)
 		stateCopy.stocks[index].isAdded = bool;

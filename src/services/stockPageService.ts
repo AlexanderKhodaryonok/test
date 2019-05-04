@@ -1,4 +1,5 @@
 import api, { mock } from "../Redux/axios/axiosInstance";
+import { IStock } from "../Redux/Reducers/StockPage/interfaces";
 
 mock.onGet('/stocks').reply(200, {
     stocks: [
@@ -119,4 +120,4 @@ mock.onPost('/stocks').reply(200, {
 });
 
 export const getStocksRequest = () => api.get('/stocks');
-export const setStocksRequest = (stocks: any) => api.post('/stocks', stocks);
+export const setStocksRequest = (stocks: IStock[]) => api.post('/stocks', stocks);

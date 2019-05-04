@@ -11,13 +11,13 @@ import Search from '../StockPage/Search/Search';
 import s from './container.module.scss';
 
 interface IStock {
-   id: string
-   name: string
-   count: number
-   price: number
-   growth: string
-   isAdded: boolean
-   data: number[]
+  id: string
+  name: string
+  count: number
+  price: number
+  growth: string
+  isAdded: boolean
+  data: number[]
 }
 
 interface IStateProps {
@@ -31,9 +31,10 @@ interface IStateProps {
 interface IDispatchProps {
   setStockId: (id: string) => void;
   setShowMode: (bool: boolean) => void;
-  setFilter: (id: string) => void;
+  setFilter: (stockName: string) => void;
+  //how to add a type to getStocks? if add '() => void' - drop the mistake
   getStocks: any;
-  sendStocks: any;
+  sendStocks: (payload: { id: string, bool: boolean }) => void;
 }
 
 
@@ -50,11 +51,10 @@ class ListContainer extends React.Component<IProps> {
   }
 
   render() {
-    debugger
     return (
       <div className={s.wrapper}>
         <div className={s.logo}>
-          Logo
+        <img src="https://img.icons8.com/pastel-glyph/64/000000/feather.png" alt='logo'/>
         </div>
         <div className={s.sidebar}>
           <Sidebar
