@@ -1,46 +1,51 @@
-import { IStocksState } from './interfaces'
+import { IStocksState } from './interfaces';
 import { handleActions } from 'redux-actions';
-import { setStockId, setShowMode, setFilter, moveStock, setStatus, setStocks } from '../../actionCreators/stockPageActionCreators';
+import { setStockId,
+  setShowMode,
+  setFilter,
+  moveStock,
+  setStatus,
+  setStocks } from '../../actionCreators/stockPageActionCreators';
 import { statuses } from '../../../helpers/statuses/statuses';
 import { findCurrentStock } from '../../../helpers/functions/functions';
 
 export const initialState: IStocksState = {
-	status: statuses.init,
-	filter: '',
-	isShowMyStocks: false,
-	currentStockId: '',
-	stocks: []
-}
+  status: statuses.init,
+  filter: '',
+  isShowMyStocks: false,
+  currentStockId: '',
+  stocks: [],
+};
 
 const stocksReducer = handleActions({
-	
-	[setStockId.toString()]: (state: IStocksState, { payload: id }: any): IStocksState => {
-		return { ...state, currentStockId: id }
-	},
 
-	[setShowMode.toString()]: (state: IStocksState, { payload: bool}: any): IStocksState => {
-		return { ...state, isShowMyStocks: bool }
-	},
+  [setStockId.toString()]: (state: IStocksState, { payload: id }: any): IStocksState => {
+    return { ...state, currentStockId: id };
+  },
 
-	[setFilter.toString()]: (state: IStocksState, { payload: stockName }: any): IStocksState => {
-		return { ...state, filter: stockName }
-	},
+  [setShowMode.toString()]: (state: IStocksState, { payload: bool }: any): IStocksState => {
+    return { ...state, isShowMyStocks: bool };
+  },
 
-	[setStatus.toString()]: (state: IStocksState, { payload: status }: any): IStocksState => {
-		return { ...state, status }
-	},
+  [setFilter.toString()]: (state: IStocksState, { payload: stockName }: any): IStocksState => {
+    return { ...state, filter: stockName };
+  },
 
-	[setStocks.toString()]: (state: IStocksState, { payload: { stocks } }: any): IStocksState => {
-		return { ...state, stocks }
-	},
+  [setStatus.toString()]: (state: IStocksState, { payload: status }: any): IStocksState => {
+    return { ...state, status };
+  },
 
-	[moveStock.toString()]: (state: IStocksState, { payload: {bool, id} }: any): IStocksState => {
-		let stateCopy = { ...state, stocks: [...state.stocks] }
-		let index: number = findCurrentStock(stateCopy, id)
-		stateCopy.stocks[index].isAdded = bool;
-		return stateCopy
-	},
+  [setStocks.toString()]: (state: IStocksState, { payload: { stocks } }: any): IStocksState => {
+    return { ...state, stocks };
+  },
 
-}, initialState);
+  [moveStock.toString()]: (state: IStocksState, { payload: { bool, id } }: any): IStocksState => {
+    const stateCopy = { ...state, stocks: [...state.stocks] };
+    const index: number = findCurrentStock(stateCopy, id);
+    stateCopy.stocks[index].isAdded = bool;
+    return stateCopy;
+  },
 
-export default stocksReducer
+},                                  initialState);
+
+export default stocksReducer;

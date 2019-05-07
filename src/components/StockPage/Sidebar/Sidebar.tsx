@@ -1,8 +1,8 @@
 import React from 'react';
-import s from './sidebar.module.scss'
+import s from './sidebar.module.scss';
 
 interface IOwnProps {
-  setShowMode: (bool: boolean) => void
+  setShowMode: (bool: boolean) => void;
   isShowMyStocks: boolean;
 }
 
@@ -12,12 +12,12 @@ const Sidebar = (props: IProps) => {
 
   let allStocksClass: string = '';
   let myStocksClass: string = '';
-  
+
   if (props.isShowMyStocks) myStocksClass = s.active;
   if (!props.isShowMyStocks) allStocksClass = s.active;
 
-  const myStocks = () => props.setShowMode(true)
-  const allStocks = () => props.setShowMode(false)
+  const myStocks = () => props.setShowMode(true);
+  const allStocks = () => props.setShowMode(false);
 
   return (
     <div className={s.wrapper}>
@@ -25,6 +25,6 @@ const Sidebar = (props: IProps) => {
       <div className={myStocksClass} onClick={myStocks}>My stocks</div>
     </div>
   );
-}
+};
 
 export default Sidebar;

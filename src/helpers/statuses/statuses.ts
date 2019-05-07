@@ -1,8 +1,8 @@
-import { IStatuses } from "./interface";
+import { IStatuses } from './interface';
 
 export const statuses: IStatuses = {
-    init: 'init',
-    error: 'error',
-    inProgress: 'inProgress',
-    success: 'success',
-}
+  init: 'init',
+  error: 'error',
+  inProgress: 'inProgress',
+  success: 'success',
+};

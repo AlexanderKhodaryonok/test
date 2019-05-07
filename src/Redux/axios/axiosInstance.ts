@@ -1,8 +1,8 @@
-import axiosLib from "axios";
+import axiosLib from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 const axios = axiosLib.create({
-    baseURL: 'baseUrl',
+  baseURL: 'baseUrl',
 });
 
 export default axios;

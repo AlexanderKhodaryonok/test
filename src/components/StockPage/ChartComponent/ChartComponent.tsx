@@ -1,8 +1,8 @@
 import React from 'react';
-import Highcharts from 'highcharts'
-import HighchartsReact from 'highcharts-react-official'
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 import Button from './Button/Button';
-import s from './chartComponent.module.scss'
+import s from './chartComponent.module.scss';
 
 interface IOwnProps {
   id: string;
@@ -12,23 +12,23 @@ interface IOwnProps {
   growth: string;
   isAdded: boolean;
   data: number[];
-  sendStocks: ( payload: { id: string, bool: boolean } ) => void;
+  sendStocks: (payload: { id: string, bool: boolean }) => void;
 }
 
 interface IProps extends IOwnProps { }
 
 const Chart = (props: IProps) => {
 
-  let dataCopy
+  let dataCopy;
   if (props.data) dataCopy = [...props.data];
   const options = {
     title: {
-      text: props.name
+      text: props.name,
     },
     series: [{
-      data: dataCopy
-    }]
-  }
+      data: dataCopy,
+    }],
+  };
 
   return (
     <>
@@ -50,6 +50,6 @@ const Chart = (props: IProps) => {
       }
     </>
   );
-}
+};
 
 export default Chart;

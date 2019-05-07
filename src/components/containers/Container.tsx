@@ -1,23 +1,30 @@
 import React from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import List from '../StockPage/List/List'
-import Chart from '../StockPage/ChartComponent/ChartComponent'
-import { stocksSelector, currentStockIdSelector, stockByIdSelector, filterSelector, isShowMyStocksSelector } from '../../Redux/selectors/stocksPageSelectors';
-import { setStockId, setShowMode, setFilter, getStocks, sendStocks } from '../../Redux/actionCreators/stockPageActionCreators';
+import List from '../StockPage/List/List';
+import Chart from '../StockPage/ChartComponent/ChartComponent';
+import { stocksSelector,
+  currentStockIdSelector,
+  stockByIdSelector, filterSelector,
+  isShowMyStocksSelector } from '../../Redux/selectors/stocksPageSelectors';
+import { setStockId,
+  setShowMode,
+  setFilter,
+  getStocks,
+  sendStocks } from '../../Redux/actionCreators/stockPageActionCreators';
 import { withRouter, RouteComponentProps } from 'react-router';
 import Sidebar from '../StockPage/Sidebar/Sidebar';
 import Search from '../StockPage/Search/Search';
 import s from './container.module.scss';
 
 interface IStock {
-  id: string
-  name: string
-  count: number
-  price: number
-  growth: string
-  isAdded: boolean
-  data: number[]
+  id: string;
+  name: string;
+  count: number;
+  price: number;
+  growth: string;
+  isAdded: boolean;
+  data: number[];
 }
 
 interface IStateProps {
@@ -32,12 +39,10 @@ interface IDispatchProps {
   setStockId: (id: string) => void;
   setShowMode: (bool: boolean) => void;
   setFilter: (stockName: string) => void;
-  //how to add a type to getStocks? if add '() => void' - drop the mistake
+  // how to add a type to getStocks? if add '() => void' - drop the mistake
   getStocks: any;
   sendStocks: (payload: { id: string, bool: boolean }) => void;
 }
-
-
 
 interface IRouterProps extends RouteComponentProps<any, any> { }
 
@@ -54,7 +59,7 @@ class ListContainer extends React.Component<IProps> {
     return (
       <div className={s.wrapper}>
         <div className={s.logo}>
-        <img src="https://img.icons8.com/pastel-glyph/64/000000/feather.png" alt='logo'/>
+        <img src="https://img.icons8.com/pastel-glyph/64/000000/feather.png" alt="logo"/>
         </div>
         <div className={s.sidebar}>
           <Sidebar
@@ -90,7 +95,7 @@ const mapStateToProps = createStructuredSelector({
   currentStockId: currentStockIdSelector,
   stock: stockByIdSelector,
   filter: filterSelector,
-  isShowMyStocks: isShowMyStocksSelector
+  isShowMyStocks: isShowMyStocksSelector,
 });
 
 const mapDispatchToProps = {
@@ -99,6 +104,7 @@ const mapDispatchToProps = {
   setFilter,
   getStocks,
   sendStocks,
-}
+};
 
-export default withRouter(connect<IStateProps, IDispatchProps>(mapStateToProps, mapDispatchToProps)(ListContainer));
+export default withRouter(connect<IStateProps,
+  IDispatchProps>(mapStateToProps, mapDispatchToProps)(ListContainer));

@@ -1,6 +1,6 @@
 export interface IStatuses {
-	error: string;
-	inProgress: string;
-	success: string;
-	init: string;
+  error: string;
+  inProgress: string;
+  success: string;
+  init: string;
 }
