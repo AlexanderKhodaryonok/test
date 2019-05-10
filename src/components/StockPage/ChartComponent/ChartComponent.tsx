@@ -46,7 +46,7 @@ const Chart = (props: IProps) => {
               sendStocks={props.sendStocks}
             />
           </div>
-        </div> : <span>Please, select stock</span>
+        </div> : <span className={s.message}>Please, select stock</span>
       }
     </>
   );
